@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Segoe+UI:wght@400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&display=swap');
-    /* Navbar */
+
+/* Navbar */
 .navbar {
   width: 100%;
   position: fixed;
@@ -9,14 +10,16 @@
   z-index: 100;
   padding: 15px 3%;
   background: transparent;
-  backdrop-filter: blur(8px); /* optional soft blur */
+  backdrop-filter: blur(8px);
   box-sizing: border-box;
 }
+
 /* Solid color after scrolling past hero */
 .navbar.scrolled {
-  background: linear-gradient(to right,#f6d4c9, #f5e1da);
+  background: linear-gradient(to right, #f6d4c9, #f5e1da);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
+
 .navbar-container {
   display: flex;
   align-items: center;
@@ -25,7 +28,7 @@
 }
 
 .logo a {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Cormorant Garamond', serif;
   font-size: 2rem;
   font-weight: 600;
   color: #000;
@@ -40,21 +43,24 @@
 
 .nav-links {
   display: flex;
-  gap: 25px;
+  gap: 30px;
   list-style: none;
   align-items: center;
 }
 
+/* Base styling for regular nav links */
 .nav-links li a {
-  font-family: 'Poppins', sans-serif;
-  font-size: 1rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
   text-decoration: none;
   color: #000;
-  font-weight: 500;
+  font-weight: 600;
   position: relative;
   transition: color 0.3s ease;
+  display: inline-block;
 }
 
+/* Golden underline effect for regular nav links */
 .nav-links li a::after {
   content: '';
   position: absolute;
@@ -63,7 +69,7 @@
   background: #b8860b;
   bottom: -5px;
   left: 0;
-  transition: width 0.3s;
+  transition: width 0.3s ease;
 }
 
 .nav-links li a:hover::after {
@@ -74,20 +80,7 @@
   color: #b8860b;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .navbar-container {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .nav-links {
-    flex-direction: column;
-    gap: 15px;
-    margin-top: 15px;
-  }
-}
-
+/* Profile dropdown container */
 .nav-profile {
   position: relative;
 }
@@ -98,65 +91,201 @@
   gap: 8px;
   cursor: pointer;
   position: relative;
-}
-/* .profile-dropdown .dropdown-menu {
-  display: none;
-  position: absolute;
-  top: 120%;
-  right: 0;
-  min-width: 150px;
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
-  z-index: 999;
-  padding: 0.5rem 0;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #000;
+  transition: color 0.3s ease;
+  padding: 5px 0;
 }
 
-.profile-dropdown:hover .dropdown-menu,
-.profile-dropdown:focus-within .dropdown-menu {
-  display: flex;
-  flex-direction: column;
-} */
+/* Golden underline for profile dropdown */
+.profile-dropdown::after {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  background: #b8860b;
+  bottom: -5px;
+  left: 0;
+  transition: width 0.3s ease;
+}
+
+.profile-dropdown:hover::after {
+  width: 100%;
+}
+
+.profile-dropdown:hover {
+  color: #b8860b;
+}
+
 .profile-avatar {
   width: 36px;
   height: 36px;
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid #b8860b;
+  transition: border-color 0.3s ease;
+}
+
+.profile-dropdown:hover .profile-avatar {
+  border-color: #d4af37;
 }
 
 .profile-username {
-  font-weight: 500;
-  color: #000;
-  font-size: 1rem !important;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+  color: inherit;
+  font-size: 1.2rem;
+  transition: color 0.3s ease;
 }
 
+/* Posts dropdown container */
+.nav-posts {
+  position: relative;
+}
+
+.posts-dropdown {
+  position: relative;
+  cursor: pointer;
+}
+
+.posts-dropdown > span {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #000;
+  transition: color 0.3s ease;
+  position: relative;
+  display: inline-block;
+  padding: 5px 0;
+}
+
+/* Golden underline for posts dropdown */
+.posts-dropdown > span::after {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  background: #b8860b;
+  bottom: -5px;
+  left: 0;
+  transition: width 0.3s ease;
+}
+
+.posts-dropdown:hover > span::after {
+  width: 100%;
+}
+
+.posts-dropdown:hover > span {
+  color: #b8860b;
+}
+
+/* Dropdown menu styling */
 .dropdown-menu {
   position: absolute;
-  top: 120%;
-  right: 0;
+  top: calc(100% + 15px); /* More gap from parent */
   background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  display: none; /* hidden by default */
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  display: none;
   flex-direction: column;
-  min-width: 150px;
-  z-index: 999; /* keep it above navbar */
+  min-width: 140px; /* Reduced width */
+  max-width: 160px;
+  z-index: 999;
+  padding: 6px 0;
+  border: 1px solid rgba(184, 134, 11, 0.1);
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Position adjustments */
+.profile-dropdown .dropdown-menu {
+  right: 0;
+}
+
+.posts-dropdown .dropdown-menu {
+  left: 0;
+}
+
+/* Hover zones for dropdown persistence */
+.nav-posts,
+.nav-profile {
+  position: relative;
+}
+
+.nav-posts::before,
+.nav-profile::before {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 15px; /* Bridge gap */
+  background: transparent;
+  z-index: 998;
+}
+
+/* Show dropdown with extended hover area */
+.posts-dropdown:hover .dropdown-menu,
+.profile-dropdown:hover .dropdown-menu,
+.nav-posts:hover .dropdown-menu,
+.nav-profile:hover .dropdown-menu {
+  display: flex;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Dropdown links styling */
 .dropdown-menu a {
-  padding: 10px;
+  padding: 8px 16px; /* Reduced padding */
   color: #333;
   text-decoration: none;
   font-size: 0.9rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border-radius: 6px;
+  margin: 1px 4px;
+  position: relative;
+  white-space: nowrap;
 }
 
+/* Dropdown link hover effects - Fixed color contrast */
 .dropdown-menu a:hover {
-  background: #f6f6f6;
+  background: rgba(184, 134, 11, 0.1);
+  color: #b8860b;
+  transform: translateX(2px);
+  font-weight: 600;
 }
-.dropdown-menu.show {
-  display: flex; /* shown when toggled */
+
+/* Remove conflicting pseudo-elements */
+.dropdown-menu a::after {
+  display: none;
 }
+
+/* Persistent hover state for parent elements */
+.posts-dropdown:hover > span,
+.profile-dropdown:hover .profile-username {
+  color: #b8860b;
+}
+
+/* Extended hover area to prevent dropdown disappearing */
+.nav-posts:hover .posts-dropdown > span,
+.nav-profile:hover .profile-username {
+  color: #b8860b;
+}
+
+.nav-posts:hover .posts-dropdown > span::after,
+.nav-profile:hover .profile-dropdown::after {
+  width: 100%;
+}
+
 /* Message Modal Styles */
 .message-modal {
     position: fixed;
@@ -166,10 +295,10 @@
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.4);
-    display: none; /* Hidden by default */
+    display: none;
     align-items: center;
     justify-content: center;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Cormorant Garamond', serif;
 }
 
 .message-modal .modal-content {
@@ -223,7 +352,8 @@
     transition: color 0.3s ease;
 }
 
-.close-btn:hover, .close-btn:focus {
+.close-btn:hover, 
+.close-btn:focus {
     color: #555;
     text-decoration: none;
 }
@@ -239,34 +369,52 @@
     }
 }
 
-.nav-posts {
-  position: relative;
-  cursor: pointer;
+/* Responsive Design */
+@media (max-width: 768px) {
+  .navbar-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 15px;
+  }
+
+  .dropdown-menu {
+    position: relative;
+    top: 0;
+    left: 0;
+    right: auto;
+    box-shadow: none;
+    border: 1px solid #eee;
+    margin-top: 10px;
+  }
+
+  .nav-posts::before,
+  .nav-profile::before {
+    display: none;
+  }
 }
 
-.posts-dropdown .dropdown-menu {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background: white;
-  border: 1px solid #ddd;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-  z-index: 1000;
-  min-width: 120px;
+/* Focus states for accessibility */
+.posts-dropdown:focus-within .dropdown-menu,
+.profile-dropdown:focus-within .dropdown-menu {
+  display: flex;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 }
 
-.posts-dropdown:hover .dropdown-menu {
-  display: block;
+.dropdown-menu a:focus {
+  outline: 2px solid #b8860b;
+  outline-offset: 2px;
+  background: rgba(184, 134, 11, 0.1);
+  color: #b8860b;
 }
 
-.posts-dropdown .dropdown-menu a {
-  display: block;
-  padding: 8px 12px;
-  color: #333;
-  text-decoration: none;
-}
-
-.posts-dropdown .dropdown-menu a:hover {
-  background-color: #f0f0f0;
+/* Ensure smooth transitions */
+* {
+  box-sizing: border-box;
 }
