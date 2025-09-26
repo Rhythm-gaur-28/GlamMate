@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explore - GlamMate</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/css/explore.css" />
+  <link rel="stylesheet" href="/css/navbar.css">
+</head>
+
+<body>
+  <%- include('partials/header') %>
+  <main class="explore-main">
+    <div class="explore-header">
+      <h1>Explore</h1>
+      <p class="subtitle">Discover looks curated & uploaded by the community</p>
+    </div>
+    <div class="search-container">
+      <div class="search-bar">
+        <input type="text" id="userSearch" placeholder="Search for users..." autocomplete="off">
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+      </div>
+      <div class="search-results-dropdown" id="searchResults">
+      </div>
+    </div>
+    <section class="masonry" id="masonry">
+      <% posts.forEach(post=> { %>
+        <article class="card" data-id="<%= post._id %>">
+          <a href="/explore/post/<%= post._id %>" class="card-link" aria-label="<%= post.title || 'View post' %>">
+            <% let imgs=post.images && post.images.length> 0 ? post.images : (post.imageUrl ? [post.imageUrl] : []); %>
+              <% if (imgs.length> 0) { %>
+                <% imgs.forEach(img=> { %>
+                  <img loading="lazy" src="<%= img %>" alt="<%= post.title || 'Outfit image' %>">
+                  <% }) %>
+                    <% } else { %>
+                      <img loading="lazy" src="/images/default-post.jpg" alt="No image">
+                      <% } %>
+          </a>
+
+          <div class="card-meta">
+            <div class="u">
+              <img src="<%= post.uploadedByAvatar || '/images/default-avatar.jpg' %>" class="avatar"
+                alt="<%= post.uploadedByName %>">
+              <div class="u-info">
+                <div class="u-name">
+                  <%= post.uploadedByName %>
+                </div>
+                <div class="u-time">
+                  <%= new Date(post.createdAt).toLocaleDateString() %>
+                </div>
+              </div>
+            </div>
+
+            <!-- <div class="actions">
+              <button class="btn-like" data-id="<%= post._id %>" title="Like">
+                <i class="fa-regular fa-heart"></i> <span class="count"><%= (post.likes || []).length %></span>
+              </button>
+              <button class="btn-save" data-id="<%= post._id %>" title="Save">
+                <i class="fa-regular fa-bookmark"></i>
+              </button>
+            </div> -->
+          </div>
+        </article>
+        <% }) %>
+    </section>
+
+    <div class="load-more-wrap">
+      <% if (page < totalPages) { %>
+        <a href="?page=<%= page+1 %>" class="btn-load-more">Load more</a>
+        <% } %>
+    </div>
+  </main>
+
+  <script src="https://kit.fontawesome.com/yourkit.js" crossorigin="anonymous"></script><!-- replace or use CDN -->
+  <script src="/js/explore.js" defer></script>
+</body>
+
+</html>

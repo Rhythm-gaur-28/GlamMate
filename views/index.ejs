@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GlamMate</title>
+  <link rel="stylesheet" href="/css/index.css" />
+  <link rel="stylesheet" href="/css/navbar.css">
+</head>
+<body>
+  <%- include('partials/header') %>
+  <!-- Username Modal -->
+<% if (user && !user.username) { %>
+<div id="usernameModal" class="modal">
+  <div class="modal-content">
+    <h2>Set your username</h2>
+    <p id="errorMsg" style="color:black;"></p>
+    <input type="text" id="usernameInput" placeholder="Enter username" />
+    <button id="submitUsername">Submit</button>
+  </div>
+</div>
+<% } %>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-left">
+      <h1>Your Fashion & Beauty Buddy </h1>
+      <p>
+        Discover, save, and get styled with outfits you'll love.<br />
+        Join a community that's as glam as you are.
+      </p>
+      <a href="#explore" class="cta-btn">Explore GlamMate</a>
+    </div>
+
+    <div class="hero-right">
+      <div class="model-container">
+        <img src="/images/model.png" alt="GlamMate Model" class="model-img" />
+        <img src="/images/dress.png" class="floating-item item1" />
+        <img src="/images/bag.png" class="floating-item item2" />
+        <img src="/images/shoe.png" class="floating-item item3" />
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Why You'll Love GlamMate Section -->
+<section class="love-glammate">
+  <h2>Why You’ll Love GlamMate</h2>
+
+    <div class="features-container">
+      <a href="/explore" class="feature-card">
+        <img src="/images/icon1.png" alt="Outfit Icon" />
+      <div>
+        <h3>Personalized Outfit Suggestions</h3>
+        <p>Get outfit ideas based on your mood, weather, or events. Never stress about what to wear again.</p>
+      </div>
+    </a>
+
+    <a href="/chat" class="feature-card">
+      <img src="/images/icon2.png" alt="Style Icon" />
+      <div>
+        <h3>Real Style Advice</h3>
+        <p>Chat with the GlamMate community for opinions and become your own fashion BFF.</p>
+      </div>
+    </a>
+
+    <a href="/closet" class="feature-card">
+      <img src="/images/icon3.png" alt="Closet Icon" />
+      <div>
+        <h3>Save to Your Closet</h3>
+        <p>Love a look? Save it to your curated digital closet for easy access anytime.</p>
+      </div>
+    </a>
+
+    <a href="/post" class="feature-card">
+      <img src="/images/icon4.png" alt="Post Icon" />
+      <div>
+        <h3>Post Your Own Look</h3>
+        <p>Share your new style with others and inspire fellow glam lovers.</p>
+      </div>
+    </a>
+  </div>
+</section>
+<section class="glammate-action">
+  <h2 class="section-title">GlamMate in Action</h2>
+
+  <div class="slider-container">
+    <div class="slider">
+
+      <!-- Slide 1 -->
+      <div class="slide">
+        <img src="images/slider4.png" alt="Explore Feature">
+        <div class="slide-text">
+          <h3>Explore</h3>
+          <p>Discover trending outfits and styles from other GlamMate users.</p>
+        </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="slide">
+        <img src="images/slider2.png" alt="Personalised Outfit">
+        <div class="slide-text">
+          <h3>Personalised Outfit</h3>
+          <p>Get outfit suggestions based on your mood, weather, and events.</p>
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="slide">
+        <img src="images/slider3.png" alt="My Closet">
+        <div class="slide-text">
+          <h3>My Closet</h3>
+          <p>Save and organize your favorite outfits for easy access anytime.</p>
+        </div>
+      </div>
+
+      <!-- Slide 4 -->
+      <div class="slide">
+        <img src="images/slider4.png" alt="Post Look">
+        <div class="slide-text">
+          <h3>Post Look</h3>
+          <p>Share your outfit looks and inspire the GlamMate community.</p>
+        </div>
+      </div>
+
+      <!-- Slide 5 -->
+      <div class="slide">
+        <img src="images/slider2.png" alt="Style Chat">
+        <div class="slide-text">
+          <h3>Style Chat</h3>
+          <p>Chat with fellow GlamMate users for fashion tips and style advice.</p>
+        </div>
+      </div>
+
+      <!-- Slide 6 -->
+      <div class="slide">
+        <img src="images/slider3.png" alt="Login Signup">
+        <div class="slide-text">
+          <h3>Login / Signup</h3>
+          <p>Join GlamMate to unlock all personalized features and collections.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Navigation -->
+    <button class="prev">&#10094;</button>
+    <button class="next">&#10095;</button>
+
+    <!-- Dots -->
+    <div class="dots"></div>
+  </div>
+</section>
+<!--how to get started-->
+<section id="how-to-get-started" class="get-started-section">
+  <div class="container">
+    <h2 class="section-title">How to Get Started?</h2>
+    <div class="steps-grid">
+      
+      <div class="step-card fade-in-step">
+        <div class="icon-wrapper">
+          <img src="/images/icon1.png" alt="Step 1" class="step-icon" />
+        </div>
+        <h3>Sign Up</h3>
+        <p>Create your GlamMate account in seconds using email or Google login.</p>
+      </div>
+
+      <div class="step-card fade-in-step">
+        <div class="icon-wrapper">
+          <img src="/images/icon2.png" alt="Step 2" class="step-icon" />
+        </div>
+        <h3>Pick Your Style</h3>
+        <p>Choose from a variety of moods, events, and weather-based outfit ideas.</p>
+      </div>
+
+      <div class="step-card fade-in-step">
+        <div class="icon-wrapper">
+          <img src="/images/icon3.png" alt="Step 3" class="step-icon" />
+        </div>
+        <h3>Save & Share</h3>
+        <p>Save your outfits, share with friends, and explore endless inspiration.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+ <!-- Loved by Glam Girls Section -->
+<section class="loved-by-glam-girls">
+  <h2 class="section-title">Loved by Glam Girls</h2>
+  <p class="section-subtitle">Hear what our GlamMates have to say</p>
+
+  <div class="reviews-container">
+    <div class="review-card">
+      <div class="review-img">
+        <img src="/images/reviewer1.jpg" alt="Ava Smith">
+      </div>
+      <h3 class="reviewer-name">Ava Smith</h3>
+      <span class="reviewer-role">Fashion Blogger</span>
+      <p class="review-text">
+        “GlamMate completely transformed my wardrobe! I love how it recommends outfits based on my mood and events. Totally obsessed! ”
+      </p>
+    </div>
+
+    <div class="review-card">
+      <div class="review-img">
+        <img src="/images/reviewer2.jpg" alt="Mia Johnson">
+      </div>
+      <h3 class="reviewer-name">Mia Johnson</h3>
+      <span class="reviewer-role">Makeup Artist</span>
+      <p class="review-text">
+        “This platform feels like my personal stylist. The mood-based outfit suggestions are on point and so stylish! ”
+      </p>
+    </div>
+
+    <div class="review-card">
+      <div class="review-img">
+        <img src="/images/reviewer3.jpg" alt="Sophia Lee">
+      </div>
+      <h3 class="reviewer-name">Sophia Lee</h3>
+      <span class="reviewer-role">Lifestyle Influencer</span>
+      <p class="review-text">
+        “The explore page is a fashion paradise! I’ve found so much outfit inspo here. Truly a must-have for every glam girl.”
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<script src="/js/index.js"></script>
+</body>
+</html>

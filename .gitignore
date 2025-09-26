@@ -1,0 +1,39 @@
+# ===============================
+# Node.js / Express project ignores
+# ===============================
+
+# Node modules
+node_modules/
+
+# Environment variables
+.env
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# System files (OS-specific)
+.DS_Store
+Thumbs.db
+
+# Uploads (user-generated content)
+public/uploads/
+uploads/
+avatars/
+banners/
+videos/
+
+# Cache / temp files
+*.cache
+
+# IDE/editor settings
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Build output (if you add frontend build later, e.g., React)
+dist/
+build/

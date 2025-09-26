@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Post | GlamMate</title>
+  <link rel="stylesheet" href="/css/navbar.css">
+  <style>
+    .wizard-step { display: none; }
+    .wizard-step.active { display: block; }
+    .image-preview { width: 100px; margin: 5px; }
+    .filter-preview { width: 100px; margin: 5px; }
+    .stacked-images { display: flex; flex-wrap: wrap; gap: 10px; }
+    .stacked-images img { width: 120px; height: 120px; object-fit: cover; }
+  </style>
+</head>
+<body>
+  <%- include('partials/header') %>
+
+  <h2>Add New Post</h2>
+  <form id="postForm" method="POST">
+    <!-- Step 1: Upload Images -->
+    <div class="wizard-step active" data-step="1">
+      <h3>Step 1: Upload Images (max 5)</h3>
+      <input type="file" id="imageInput" multiple accept="image/*">
+      <div id="previewContainer" class="stacked-images"></div>
+      <button type="button" id="next1">Next</button>
+    </div>
+
+    <!-- Step 2: Select Filter -->
+    <div class="wizard-step" data-step="2">
+      <h3>Step 2: Choose a Filter</h3>
+      <select id="filterSelect" name="filter">
+        <option value="">None</option>
+        <option value="grayscale(100%)">Grayscale</option>
+        <option value="sepia(100%)">Sepia</option>
+        <option value="blur(2px)">Blur</option>
+        <option value="brightness(150%)">Brightness</option>
+      </select>
+      <div id="filterPreview" class="stacked-images"></div>
+      <button type="button" id="prev2">Previous</button>
+      <button type="button" id="next2">Next</button>
+    </div>
+
+    <!-- Step 3: Caption -->
+    <div class="wizard-step" data-step="3">
+      <h3>Step 3: Add Caption</h3>
+      <textarea name="caption" placeholder="Write a caption..."></textarea>
+      <button type="button" id="prev3">Previous</button>
+      <button type="submit">Post</button>
+    </div>
+
+    <!-- Hidden inputs to send Base64 images -->
+    <div id="hiddenImagesContainer"></div>
+  </form>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+  <script src="/js/addPost.js" defer></script>
+</body>
+</html>

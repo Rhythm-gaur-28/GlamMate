@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>
+    <%= profileUser.username %> | GlamMate
+  </title>
+  <link rel="stylesheet" href="/css/navbar.css">
+  <link rel="stylesheet" href="/css/profile.css">
+</head>
+
+<body>
+  <%- include('partials/header') %>
+
+    <section class="profile-banner" style="background-image: url('<%= profileUser.banner || "/images/default-banner.jpg" %>');">
+      <div class="profile-header">
+        <div class="profile-picture">
+          <img src="<%= profileUser.avatar || '/images/default-avatar.jpg' %>" alt="Profile Picture">
+        </div>
+        <div class="profile-info">
+          <h2>
+            <%= profileUser.username %>
+          </h2>
+          <p>
+            <%= profileUser.bio || "No bio yet" %>
+          </p>
+        </div>
+      </div>
+
+      <% if (isOwner) { %>
+        <div class="edit-banner-btn">
+          <img src="/images/camera-icon.png" alt="Edit Banner" class="banner-camera">
+          <input type="file" id="bannerInput" accept="image/*" style="display: none;">
+        </div>
+        <% } %>
+    </section>
+
+    <section class="profile-stats">
+      <div class="stat clickable" data-tab="posts">
+        <strong>
+          <%= postsCount || 0 %>
+        </strong><span>Posts</span>
+      </div>
+      <% if (isOwner) { %>
+        <div class="stat clickable" data-tab="collections">
+          <strong>
+            <%= collectionsCount || 0 %>
+          </strong><span>Collections</span>
+        </div>
+        <% } %>
+          <% if (isOwner) { %>
+            <div class="stat clickable" data-tab="saved">
+              <strong>
+                <%= savedCount || 0 %>
+              </strong><span>Saved</span>
+            </div>
+            <% } %>
+              <div class="stat">
+                <strong>
+                  <%= profileUser.followers.length %>
+                </strong><span>Followers</span>
+              </div>
+              <div class="stat">
+                <strong>
+                  <%= profileUser.following.length %>
+                </strong><span>Following</span>
+              </div>
+    </section>
+
+    <section class="profile-layout">
+      <aside class="profile-sidebar">
+        <img src="<%= profileUser.avatar %>" class="sidebar-avatar" />
+        <h2>
+          <%= profileUser.username %>
+        </h2>
+
+        <% if (isOwner) { %>
+          <p class="email">
+            <%= profileUser.email %>
+          </p>
+          <% } %>
+
+            <% if (isOwner) { %>
+              <button class="edit-profile-btn">Edit Profile</button>
+              <% } %>
+
+                <div class="about-me">
+                  <h3>About Me</h3>
+                  <p>
+                    <%= profileUser.aboutMe || "No bio yet" %>
+                  </p>
+                </div>
+
+                <% if (isOwner) { %>
+                  <div class="fashion-mood">
+                    <h3>Fashion Mood Meter</h3>
+                    <div class="swatches">
+                      <% if (profileUser.moodColors && profileUser.moodColors.length) { %>
+                        <% profileUser.moodColors.forEach(c=> { %>
+                          <span class="swatch" style="background:<%= c.color %>;" title="<%= c.percent %>%"></span>
+                          <% }) %>
+                            <% } else { %>
+                              <p>No data yet</p>
+                              <% } %>
+                    </div>
+                  </div>
+                  <% } %>
+      </aside>
+
+      <main class="profile-content">
+
+        <div class="tab-content" id="posts">
+  <% if (posts && posts.length) { %>
+    <div class="card-grid">
+      <% posts.forEach(p => { %>
+        <div class="post-card">
+          <% p.images.forEach(img => { %>
+            <img src="<%= img %>" alt="Post">
+          <% }) %>
+          <% if (p.caption) { %>
+            <p><%= p.caption %></p>
+          <% } %>
+        </div>
+      <% }) %>
+    </div>
+  <% } else { %>
+    <p>No posts yet.</p>
+  <% } %>
+</div>
+
+        <div class="tab-content hidden" id="collections">
+          <p>Collections will appear here.</p>
+        </div>
+
+        <div class="tab-content hidden" id="saved">
+          <p>Saved posts will appear here.</p>
+        </div>
+      </main>
+    </section>
+
+    <div id="editProfileModal" class="modal hidden">
+      <div class="modal-content">
+        <h2>Edit Profile</h2>
+        <form id="editProfileForm" enctype="multipart/form-data">
+          <div class="form-group">
+            <label for="avatar">Profile Picture</label>
+            <input type="file" id="avatar" name="avatar" accept="image/*">
+          </div>
+
+          <div class="form-group">
+            <label for="bio">Bio</label>
+            <textarea id="bio" name="bio"
+              placeholder="Tell something about yourself..."><%= profileUser.bio %></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="aboutMe">About Me</label>
+            <textarea id="aboutMe" name="aboutMe"
+              placeholder="Add more details..."><%= profileUser.aboutMe || "" %></textarea>
+          </div>
+
+          <div class="modal-buttons">
+            <button type="button" class="cancel-btn">Cancel</button>
+            <button type="submit" class="save-btn">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <script src="/js/profile.js"></script>
+</body>
+
+</html>

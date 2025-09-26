@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <%- include('partials/header') %>
+  <link rel="stylesheet" href="/css/explore.css">
+  <link rel="stylesheet" href="/css/navbar.css">
+</head>
+<body>
+  <main class="single-post">
+    <div class="single-image">
+      <img src="<%= post.imageUrl %>" alt="<%= post.title %>">
+    </div>
+
+    <aside class="single-info">
+      <div class="poster">
+        <img src="<%= post.uploadedByAvatar || '/images/default-avatar.jpg' %>" class="avatar">
+        <div>
+          <h3><%= post.uploadedByName %></h3>
+          <p class="muted"><%= new Date(post.createdAt).toLocaleString() %></p>
+        </div>
+      </div>
+
+      <h2 class="post-title"><%= post.title || '' %></h2>
+      <p class="post-desc"><%= post.description || '' %></p>
+
+      <div class="post-actions">
+        <button id="likeBtn" data-id="<%= post._id %>">
+          <i class="fa-regular fa-heart"></i> <span id="likeCount"><%= (post.likes || []).length %></span>
+        </button>
+        <button id="saveBtn" data-id="<%= post._id %>">
+          <i class="fa-regular fa-bookmark"></i> Save
+        </button>
+      </div>
+
+      <a class="back" href="/explore">← Back to Explore</a>
+    </aside>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+  <script src="/js/explore.js" defer></script>
+</body>
+</html>

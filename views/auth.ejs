@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GlamMate - Login / Signup</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  <link rel="stylesheet" href="/css/auth.css">
+  <link rel="stylesheet" href="/css/navbar.css">
+  <style>
+    .error-message {
+      color: rgb(0, 0, 0);
+      font-size: 0.9rem;
+      margin-top: 5px;
+    }
+  </style>
+  <script>
+  // Pass error variables to JS
+  var loginError = <%- JSON.stringify(loginError || "") %>;
+  var signupError = <%- JSON.stringify(signupError || "") %>;
+  </script>
+</head>
+
+<body>
+  <!-- <video autoplay muted loop id="bgVideo">
+    <source src="/videos/cherry-blossom.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video> -->
+  <%- include('partials/header') %>
+  <div class="container" id="container">
+    <div class="toggle-switch">
+      <button id="showLogin" class="active">Log In</button>
+      <button id="showSignup">Sign Up</button>
+    </div>
+    <div id="formArea">
+      <!-- Login Form -->
+      <form method="POST" action="/login" id="loginForm">
+        <h1>Log In</h1>
+        <div class="social-icons">
+          <a href="/auth/google" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
+          <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
+          <!-- <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
+          <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a> -->
+        </div>
+        <span>or use your email and password</span>
+        <input type="text" name="username" placeholder="Username" required />
+        <input type="email" name="email" placeholder="Email" required />
+        <input type="password" name="password" placeholder="Password" required />
+        <% if (loginError) { %>
+          <script>
+            document.addEventListener('DOMContentLoaded', function () {
+              const loginErrorDiv = document.getElementById("loginError");
+              if (loginErrorDiv) {
+                loginErrorDiv.innerText = `<%- loginError %>`;
+              }
+            });
+          </script>
+        <% } %>
+        <div id="loginError" class="error-message"></div>
+        <a href="#">Forgot your password?</a>
+        <button type="submit">Log In</button>
+      </form>
+      <!-- Signup Form -->
+      <form method="POST" action="/signup" id="signupForm" style="display:none;">
+        <h1>Create Account</h1>
+        <div class="social-icons">
+          <a href="/auth/google" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
+          <a href="/auth/facebook" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
+          <!-- <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
+          <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a> -->
+        </div>
+        <span>or use your email and OTP for registration</span>
+        <input type="text" name="name" placeholder="Name" required />
+        <input type="text" name="username" placeholder="Username" required />
+        <input type="email" name="email" placeholder="Email" required />
+        <input type="password" name="password" placeholder="Create Password" id="signupPassword" required />
+        <div id="passwordError" class="error-message"></div>
+        <input type="password" name="confirmPassword" placeholder="Confirm Password" id="confirmPassword" required />
+        <div id="confirmError" class="error-message"></div>
+        <% if (signupError) { %>
+          <script>
+            document.addEventListener('DOMContentLoaded', function () {
+              const signupErrorDiv = document.getElementById("signupError");
+              if (signupErrorDiv) {
+                signupErrorDiv.innerText = `<%- signupError %>`;
+              }
+            });
+          </script>
+        <% } %>
+        <div id="signupError" class="error-message"></div>
+        <button type="submit">Sign Up</button>
+      </form>
+    </div>
+  </div>
+  <script src="/js/auth.js"></script>
+</body>
+</html>
