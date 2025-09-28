@@ -1,6 +1,7 @@
 /* Import luxury fonts */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&display=swap');
+
 /* Base Styles */
 * {
     margin: 0;
@@ -9,7 +10,6 @@
 }
 
 body {
-    font-family: 'Inter', sans-serif;
     background: linear-gradient(to right, #f5e1da, #f6d4c9);
     min-height: 100vh;
     padding-top: 80px;
@@ -27,7 +27,7 @@ body {
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(20px);
     border-radius: 24px;
-    box-shadow: 
+    box-shadow:
         0 32px 64px rgba(0, 0, 0, 0.12),
         0 0 0 1px rgba(255, 255, 255, 0.8);
     width: 100%;
@@ -42,6 +42,7 @@ body {
         opacity: 0;
         transform: translateY(40px) scale(0.95);
     }
+
     to {
         opacity: 1;
         transform: translateY(0) scale(1);
@@ -60,7 +61,8 @@ body {
     font-family: 'Cormorant Garamond', serif;
 }
 
-.back-btn, .next-btn {
+.back-btn,
+.next-btn {
     background: none;
     border: none;
     color: rgb(0, 0, 0);
@@ -73,12 +75,14 @@ body {
     font-family: 'Inter', sans-serif;
 }
 
-.back-btn:disabled, .next-btn:disabled {
+.back-btn:disabled,
+.next-btn:disabled {
     opacity: 0.5;
     cursor: not-allowed;
 }
 
-.back-btn:not(:disabled):hover, .next-btn:not(:disabled):hover {
+.back-btn:not(:disabled):hover,
+.next-btn:not(:disabled):hover {
     background: rgba(255, 255, 255, 0.2);
     transform: translateY(-2px);
 }
@@ -100,7 +104,7 @@ body {
 .progress-bar {
     width: 100%;
     height: 4px;
-    background: rgba(102, 126, 234, 0.2);
+    background: rgba(242, 238, 128, 0.2);
     border-radius: 2px;
     overflow: hidden;
     margin-bottom: 12px;
@@ -108,7 +112,7 @@ body {
 
 .progress-fill {
     height: 100%;
-    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(to right,#f6e27f, #d4af37);
     width: 33.33%;
     border-radius: 2px;
     transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -130,13 +134,13 @@ body {
     justify-content: center;
     font-weight: 600;
     font-size: 14px;
-    background: rgba(102, 126, 234, 0.1);
-    color: #667eea;
+    background: rgba(84, 81, 81, 0.1);
+    color: #000000;
     transition: all 0.3s ease;
 }
 
 .step.active {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(to right, #c99c33, #d4af37);
     color: white;
     transform: scale(1.1);
 }
@@ -154,8 +158,15 @@ body {
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Step 1: Upload */
@@ -196,11 +207,17 @@ body {
 }
 
 @keyframes shimmer {
-    0% { transform: translateX(-100%) rotate(45deg); }
-    100% { transform: translateX(100%) rotate(45deg); }
+    0% {
+        transform: translateX(-100%) rotate(45deg);
+    }
+
+    100% {
+        transform: translateX(100%) rotate(45deg);
+    }
 }
 
-.drag-drop-area:hover, .drag-drop-area.dragover {
+.drag-drop-area:hover,
+.drag-drop-area.dragover {
     border-color: #b8860b;
     background: linear-gradient(135deg, rgba(184, 134, 11, 0.1) 0%, rgba(212, 175, 55, 0.05) 100%);
     transform: scale(1.02);
@@ -216,12 +233,19 @@ body {
 }
 
 @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
 }
 
 .drag-drop-area h3 {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Cormorant Garamond', serif;
     font-size: 1.5rem;
     color: #333;
     margin-bottom: 8px;
@@ -239,24 +263,25 @@ body {
 }
 
 .select-btn {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    border: none;
+    background: linear-gradient(to right, #d4af37, #c99c33);
+    border: 1px solid #c99c33;
+    color: #000000;
     padding: 14px 28px;
-    border-radius: 12px;
-    font-size: 1rem;
+    /* border-radius: 12px; */
+    font-size: 1.2rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-    font-family: 'Inter', sans-serif;
+    box-shadow: 0 4px 12px rgba(224, 185, 115, 0.4);
+    font-family: 'Cormorant Garamond', serif;
     position: relative;
     z-index: 1;
 }
 
 .select-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+    background: linear-gradient(to right, #c99c33, #d4af37);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(224, 185, 115, 0.5);
 }
 
 .select-btn:active {
@@ -393,7 +418,8 @@ body {
 }
 
 /* FIXED: Navigation arrows - always visible when multiple images */
-.prev-image, .next-image {
+.prev-image,
+.next-image {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -422,7 +448,8 @@ body {
     right: 16px;
 }
 
-.prev-image:hover, .next-image:hover {
+.prev-image:hover,
+.next-image:hover {
     background: white;
     transform: translateY(-50%) scale(1.1);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
@@ -458,7 +485,8 @@ body {
     overflow-y: auto;
     padding-right: 8px;
     flex: 1;
-    max-height: calc(500px - 60px); /* Account for header */
+    max-height: calc(500px - 60px);
+    /* Account for header */
 }
 
 .filter-item {
@@ -651,13 +679,14 @@ body {
 }
 
 @keyframes toastSlideIn {
-    from { 
-        bottom: -100px; 
+    from {
+        bottom: -100px;
         opacity: 0;
         transform: translateX(-50%) scale(0.9);
     }
-    to { 
-        bottom: 24px; 
+
+    to {
+        bottom: 24px;
         opacity: 1;
         transform: translateX(-50%) scale(1);
     }
@@ -675,8 +704,13 @@ body {
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 /* FIXED: Better scrollbar styling */
@@ -735,7 +769,8 @@ body {
         gap: 12px;
     }
 
-    .image-item, .add-more-btn {
+    .image-item,
+    .add-more-btn {
         width: 120px;
         height: 120px;
     }
