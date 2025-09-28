@@ -59,7 +59,14 @@
   transition: color 0.3s ease;
   display: inline-block;
 }
-
+.posts-dropdown > span,
+.profile-username {
+  font-family: 'Cormorant Garamond', serif !important;
+  font-size: 1.2rem !important;
+  color: #000;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
 /* Golden underline effect for regular nav links */
 .nav-links li a::after {
   content: '';
@@ -243,7 +250,8 @@
 
 /* Dropdown links styling */
 .dropdown-menu a {
-  padding: 8px 16px; /* Reduced padding */
+  padding: 8px 16px; /* 8px top/bottom, 16px left/right */
+  margin: 1px 4px; /* 1px top/bottom, 4px left/right */
   color: #333;
   text-decoration: none;
   font-size: 0.9rem;
@@ -251,17 +259,18 @@
   font-weight: 500;
   transition: all 0.2s ease;
   border-radius: 6px;
-  margin: 1px 4px;
   position: relative;
   white-space: nowrap;
+  box-sizing: border-box;
 }
 
 /* Dropdown link hover effects - Fixed color contrast */
 .dropdown-menu a:hover {
   background: rgba(184, 134, 11, 0.1);
   color: #b8860b;
-  transform: translateX(2px);
+  /* transform: translateX(2px); */
   font-weight: 600;
+   transform: none;
 }
 
 /* Remove conflicting pseudo-elements */

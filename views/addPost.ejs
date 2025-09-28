@@ -1,61 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Add Post | GlamMate</title>
-  <link rel="stylesheet" href="/css/navbar.css">
-  <style>
-    .wizard-step { display: none; }
-    .wizard-step.active { display: block; }
-    .image-preview { width: 100px; margin: 5px; }
-    .filter-preview { width: 100px; margin: 5px; }
-    .stacked-images { display: flex; flex-wrap: wrap; gap: 10px; }
-    .stacked-images img { width: 120px; height: 120px; object-fit: cover; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create New Post | GlamMate</title>
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/addPost.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
+
 <body>
-  <%- include('partials/header') %>
+    <%- include('partials/header') %>
 
-  <h2>Add New Post</h2>
-  <form id="postForm" method="POST">
-    <!-- Step 1: Upload Images -->
-    <div class="wizard-step active" data-step="1">
-      <h3>Step 1: Upload Images (max 5)</h3>
-      <input type="file" id="imageInput" multiple accept="image/*">
-      <div id="previewContainer" class="stacked-images"></div>
-      <button type="button" id="next1">Next</button>
+    <div class="addpost-container">
+        <div class="addpost-modal">
+            <!-- Header -->
+            <div class="addpost-header">
+                <button class="back-btn" disabled>
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h2 class="step-title">Create new post</h2>
+                <button class="next-btn" disabled>
+                    Next
+                </button>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                <div class="step-indicators">
+                    <div class="step active">1</div>
+                    <div class="step">2</div>
+                    <div class="step">3</div>
+                </div>
+            </div>
+
+            <!-- Form -->
+            <form id="postForm" method="POST">
+                <!-- Step 1: Upload Images -->
+                <div class="step-content active" data-step="1">
+                    <div class="upload-section">
+                        <div class="drag-drop-area" id="dragDropArea">
+                            <div class="upload-icon">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                            </div>
+                            <h3>Drag photos and videos here</h3>
+                            <p>or</p>
+                            <button type="button" class="select-btn">
+                                Select from computer
+                            </button>
+                            <input type="file" id="fileInput" multiple accept="image/*" style="display: none;">
+                        </div>
+
+                        <!-- Image Preview Grid -->
+                        <div class="images-grid" id="imagesGrid" style="display: none;">
+                            <!-- Images will be added here dynamically -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2: Filters -->
+                <div class="step-content" data-step="2">
+                    <div class="filter-section">
+                        <div class="image-preview-container">
+                            <div class="main-image">
+                                <img id="mainFilterImage" src="" alt="Preview">
+                                <div class="image-counter">
+                                    <span id="currentImageIndex">1</span> / <span id="totalImages">1</span>
+                                </div>
+                                <button class="prev-image" type="button">
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                                <button class="next-image" type="button">
+                                    <i class="fas fa-chevron-right"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="filters-container">
+                            <h3>Choose a filter</h3>
+                            <div class="filters-grid" id="filtersGrid">
+                                <div class="filter-item active" data-filter="">
+                                    <img class="filter-preview" src="" alt="Original">
+                                    <span>Original</span>
+                                </div>
+                                <div class="filter-item" data-filter="grayscale(100%)">
+                                    <img class="filter-preview" src="" alt="Grayscale">
+                                    <span>Grayscale</span>
+                                </div>
+                                <div class="filter-item" data-filter="sepia(80%)">
+                                    <img class="filter-preview" src="" alt="Sepia">
+                                    <span>Sepia</span>
+                                </div>
+                                <div class="filter-item" data-filter="brightness(1.3)">
+                                    <img class="filter-preview" src="" alt="Bright">
+                                    <span>Bright</span>
+                                </div>
+                                <div class="filter-item" data-filter="contrast(1.4)">
+                                    <img class="filter-preview" src="" alt="Contrast">
+                                    <span>Contrast</span>
+                                </div>
+                                <div class="filter-item" data-filter="blur(1px)">
+                                    <img class="filter-preview" src="" alt="Soft">
+                                    <span>Soft</span>
+                                </div>
+                                <div class="filter-item" data-filter="saturate(1.5)">
+                                    <img class="filter-preview" src="" alt="Saturate">
+                                    <span>Saturate</span>
+                                </div>
+                                <div class="filter-item" data-filter="hue-rotate(90deg)">
+                                    <img class="filter-preview" src="" alt="Cool">
+                                    <span>Cool</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3: Caption & Tags -->
+                <div class="step-content" data-step="3">
+                    <div class="caption-section">
+                        <div class="final-preview">
+                            <img id="finalPreviewImage" src="" alt="Final Preview">
+                        </div>
+
+                        <div class="caption-form">
+                            <div class="user-info">
+                                <img src="<%= user && user.avatar ? user.avatar : '/images/default-avatar.jpg' %>"
+                                    alt="Your Avatar" class="user-avatar">
+                                <span class="username">
+                                    <%= user && user.username ? user.username : 'Your Username' %>
+                                </span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="caption">Write a caption...</label>
+                                <textarea id="caption" name="caption" placeholder="Write a caption..."
+                                    maxlength="2200"></textarea>
+                                <span class="char-count">0/2200</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="tags">Add tags</label>
+                                <input type="text" id="tags" name="tags"
+                                    placeholder="Add tags separated by commas (e.g. fashion, style, outfit)">
+                                <small>Separate tags with commas</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hidden inputs -->
+                <div id="hiddenInputs"></div>
+                <input type="hidden" id="selectedFilter" name="filter" value="">
+            </form>
+        </div>
     </div>
 
-    <!-- Step 2: Select Filter -->
-    <div class="wizard-step" data-step="2">
-      <h3>Step 2: Choose a Filter</h3>
-      <select id="filterSelect" name="filter">
-        <option value="">None</option>
-        <option value="grayscale(100%)">Grayscale</option>
-        <option value="sepia(100%)">Sepia</option>
-        <option value="blur(2px)">Blur</option>
-        <option value="brightness(150%)">Brightness</option>
-      </select>
-      <div id="filterPreview" class="stacked-images"></div>
-      <button type="button" id="prev2">Previous</button>
-      <button type="button" id="next2">Next</button>
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <i class="fas fa-exclamation-circle"></i>
+        <span id="toastMessage">Please add at least one image before proceeding!</span>
     </div>
 
-    <!-- Step 3: Caption -->
-    <div class="wizard-step" data-step="3">
-      <h3>Step 3: Add Caption</h3>
-      <textarea name="caption" placeholder="Write a caption..."></textarea>
-      <button type="button" id="prev3">Previous</button>
-      <button type="submit">Post</button>
-    </div>
-
-    <!-- Hidden inputs to send Base64 images -->
-    <div id="hiddenImagesContainer"></div>
-  </form>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
-  <script src="/js/addPost.js" defer></script>
+    <script src="/js/addPost.js"></script>
 </body>
+
 </html>

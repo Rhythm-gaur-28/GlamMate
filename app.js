@@ -5,6 +5,7 @@ const MongoStore = require("connect-mongo");
 const path = require("path");
 const dotenv = require("dotenv");
 const passport = require("passport");
+const routes = require('./routes/routes');
 const authRoutes = require("./routes/authRoutes");
 const User = require("./models/User");
 require("dotenv").config();
@@ -75,6 +76,7 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
 // Routes
+app.use("/", routes);
 app.use("/", authRoutes);
 
 // 404 Fallback

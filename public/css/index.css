@@ -26,7 +26,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 80px 10%;
+  padding: 130px 10% 80px 10%;
   min-height: 100vh;
 }
 
@@ -497,6 +497,7 @@ body {
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
+  animation: floatIcon 4s ease-in-out infinite;
 }
 
 .step-icon {

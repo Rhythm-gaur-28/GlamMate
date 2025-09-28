@@ -3,7 +3,7 @@
    ------------------------------ */
 
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: "Cormorant Garamond", serif;
   margin: 0;
   padding: 0;
   background: linear-gradient(135deg, #fdfbfb, #ebedee);
@@ -163,22 +163,24 @@ body {
 }
 
 .edit-profile-btn {
-  padding: 12px 24px;
-  border: none;
-  border-radius: 12px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 10px 20px;
+  border: 1px solid #c99c33;
+  /* border-radius: 12px; */
+  background: linear-gradient(to right, #d4af37, #c99c33);
   color: #fff;
   font-weight: 600;
   font-size: 0.95rem;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   margin-bottom: 20px;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 4px 12px rgba(224, 185, 115, 0.4);
+  font-family: "Cormorant Garamond", serif;
 }
 
 .edit-profile-btn:hover {
+  background: linear-gradient(to right, #c99c33, #d4af37);
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 4px 12px rgba(224, 185, 115, 0.4);
 }
 
 .edit-profile-btn:active {
@@ -476,6 +478,7 @@ body {
   font-size: 0.95rem;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   letter-spacing: -0.025em;
+  font-family: "Cormorant Garamond", serif;
 }
 
 .cancel-btn {
