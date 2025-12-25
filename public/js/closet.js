@@ -32,6 +32,64 @@ function setupEventListeners() {
     // Add form submit
     document.getElementById('addItemForm').addEventListener('submit', handleAddItem);
 }
+// Image upload preview
+const uploadBox = document.getElementById('uploadBox');
+const imageInput = document.getElementById('imageInput');
+const uploadPlaceholder = document.getElementById('uploadPlaceholder');
+const imagePreview = document.getElementById('imagePreview');
+
+if (uploadBox && imageInput) {
+    // Click to upload
+    uploadBox.addEventListener('click', () => {
+        imageInput.click();
+    });
+
+    // File input change
+    imageInput.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            previewImage(file);
+        }
+    });
+
+    // Drag and drop
+    uploadBox.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        uploadBox.classList.add('drag-over');
+    });
+
+    uploadBox.addEventListener('dragleave', () => {
+        uploadBox.classList.remove('drag-over');
+    });
+
+    uploadBox.addEventListener('drop', (e) => {
+        e.preventDefault();
+        uploadBox.classList.remove('drag-over');
+        
+        const file = e.dataTransfer.files[0];
+        if (file && file.type.startsWith('image/')) {
+            imageInput.files = e.dataTransfer.files;
+            previewImage(file);
+        }
+    });
+}
+
+function previewImage(file) {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+        imagePreview.src = e.target.result;
+        imagePreview.style.display = 'block';
+        uploadPlaceholder.style.display = 'none';
+    };
+    reader.readAsDataURL(file);
+}
+
+function resetUploadPreview() {
+    imagePreview.style.display = 'none';
+    imagePreview.src = '';
+    uploadPlaceholder.style.display = 'flex';
+    imageInput.value = '';
+}
 
 async function loadItems() {
     const grid = document.getElementById('itemsGrid');
@@ -159,7 +217,9 @@ function closeAddModal() {
     document.getElementById('addModal').classList.remove('active');
     document.body.style.overflow = '';
     document.getElementById('addItemForm').reset();
+    resetUploadPreview(); // Add this line
 }
+
 
 function openEditModal(itemId) {
     // Implement edit functionality

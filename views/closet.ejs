@@ -66,91 +66,106 @@
     </div>
 
     <!-- Add Item Modal -->
-    <div id="addModal" class="modal">
-        <div class="modal-overlay" onclick="closeAddModal()"></div>
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Add Item to Closet</h2>
-                <button class="modal-close" onclick="closeAddModal()">&times;</button>
+<div id="addModal" class="modal">
+    <div class="modal-overlay" onclick="closeAddModal()"></div>
+    <div class="modal-content">
+        <div class="modal-header">
+            <div>
+                <h2>Add to Your Closet</h2>
+                <div class="modal-underline"></div>
             </div>
-            <form id="addItemForm" enctype="multipart/form-data">
-                <div class="form-group">
-                    <label>Image *</label>
-                    <input type="file" name="image" accept="image/*" required>
-                </div>
-
-                <div class="form-group">
-                    <label>Item Name *</label>
-                    <input type="text" name="name" placeholder="e.g., Blue denim jacket" required maxlength="100">
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Category *</label>
-                        <select name="category" required>
-                            <option value="">Select...</option>
-                            <option value="top">Top</option>
-                            <option value="bottom">Bottom</option>
-                            <option value="dress">Dress</option>
-                            <option value="outerwear">Outerwear</option>
-                            <option value="shoes">Shoes</option>
-                            <option value="bag">Bag</option>
-                            <option value="accessory">Accessory</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Season</label>
-                        <select name="season">
-                            <option value="all-season">All Season</option>
-                            <option value="summer">Summer</option>
-                            <option value="winter">Winter</option>
-                            <option value="spring">Spring</option>
-                            <option value="fall">Fall</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label>Colors (comma-separated)</label>
-                    <input type="text" name="colors" placeholder="e.g., blue, white, denim">
-                </div>
-
-                <div class="form-group">
-                    <label>Occasions (comma-separated)</label>
-                    <input type="text" name="occasion" placeholder="e.g., casual, work, party">
-                </div>
-
-                <div class="form-group">
-                    <label>Style Tags (comma-separated)</label>
-                    <input type="text" name="style" placeholder="e.g., minimal, elegant, streetwear">
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Brand</label>
-                        <input type="text" name="brand" placeholder="e.g., Zara">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Price (₹)</label>
-                        <input type="number" name="price" placeholder="0" min="0">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label>Notes</label>
-                    <textarea name="notes" rows="3" placeholder="Any additional details..." maxlength="500"></textarea>
-                </div>
-
-                <div class="form-actions">
-                    <button type="button" class="btn-secondary" onclick="closeAddModal()">Cancel</button>
-                    <button type="submit" class="btn-primary">Add to Closet</button>
-                </div>
-            </form>
+            <button class="modal-close" onclick="closeAddModal()">&times;</button>
         </div>
+        
+        <form id="addItemForm" enctype="multipart/form-data">
+            <div class="form-layout">
+                <!-- Left Column: Image Upload -->
+                <div class="upload-section">
+                    <div class="upload-box" id="uploadBox">
+                        <input type="file" name="image" id="imageInput" accept="image/*" required hidden>
+                        <div class="upload-placeholder" id="uploadPlaceholder">
+                            <svg class="hanger-icon" viewBox="0 0 100 100" fill="none" stroke="currentColor">
+                                <path d="M50 15 L50 25 M50 25 Q55 25 55 30 L75 45 Q78 47 78 50 L78 55 Q78 58 75 58 L25 58 Q22 58 22 55 L22 50 Q22 47 25 45 L45 30 Q50 25 50 25" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            <p class="upload-text">Drag & drop or click to upload</p>
+                            <span class="upload-hint">PNG, JPG up to 5MB</span>
+                        </div>
+                        <img id="imagePreview" class="image-preview" style="display: none;">
+                    </div>
+                </div>
+
+                <!-- Right Column: Form Fields -->
+                <div class="fields-section">
+                    <!-- Row 1 -->
+                    <div class="form-row-two-col">
+                        <div class="form-group">
+                            <label>Item Name <span class="required">*</span></label>
+                            <input type="text" name="name" placeholder="e.g., Blue denim jacket" required maxlength="100">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Category <span class="required">*</span></label>
+                            <select name="category" required>
+                                <option value="">Select...</option>
+                                <option value="top">Top</option>
+                                <option value="bottom">Bottom</option>
+                                <option value="dress">Dress</option>
+                                <option value="outerwear">Outerwear</option>
+                                <option value="shoes">Shoes</option>
+                                <option value="bag">Bag</option>
+                                <option value="accessory">Accessory</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row-two-col">
+                        <div class="form-group">
+                            <label>Season</label>
+                            <select name="season">
+                                <option value="all-season">All Season</option>
+                                <option value="summer">Summer</option>
+                                <option value="winter">Winter</option>
+                                <option value="spring">Spring</option>
+                                <option value="fall">Fall</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Colors (comma-separated)</label>
+                            <input type="text" name="colors" placeholder="e.g., blue, white, denim">
+                        </div>
+                    </div>
+
+                    <!-- Row 2 -->
+                    <div class="form-row-two-col">
+                        <div class="form-group">
+                            <label>Occasions (comma-separated)</label>
+                            <input type="text" name="occasion" placeholder="e.g., casual, work, party">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Style Tags (comma-separated)</label>
+                            <input type="text" name="style" placeholder="e.g., minimal, elegant">
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Notes</label>
+                        <textarea name="notes" rows="3" placeholder="Any additional details..." maxlength="500"></textarea>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="form-actions">
+                        <button type="button" class="btn-cancel" onclick="closeAddModal()">Cancel</button>
+                        <button type="submit" class="btn-submit">Add to Closet</button>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
+</div>
+
 
     <!-- Edit Item Modal -->
     <div id="editModal" class="modal">
