@@ -1,0 +1,99 @@
+{
+  "timestamp": "2025-09-30T11:30:21.790Z",
+  "dataset_path": "./ai-system/data/raw",
+  "stats": {
+    "totalImages": 286743,
+    "totalSize": 7276966168,
+    "categories": {
+      "DeepFashion2 Resized/resized/test": 62629,
+      "DeepFashion2 Resized/resized/train": 191961,
+      "DeepFashion2 Resized/resized/validation": 32153
+    },
+    "fileTypes": {
+      ".jpg": 286743
+    },
+    "sampleImages": [
+      {
+        "name": "000001.jpg",
+        "path": "ai-system\\data\\raw\\DeepFashion2 Resized\\resized\\test\\000001.jpg",
+        "category": "DeepFashion2 Resized/resized/test",
+        "size": "23.27 KB",
+        "extension": ".jpg"
+      },
+      {
+        "name": "000002.jpg",
+        "path": "ai-system\\data\\raw\\DeepFashion2 Resized\\resized\\test\\000002.jpg",
+        "category": "DeepFashion2 Resized/resized/test",
+        "size": "19.48 KB",
+        "extension": ".jpg"
+      },
+      {
+        "name": "000003.jpg",
+        "path": "ai-system\\data\\raw\\DeepFashion2 Resized\\resized\\test\\000003.jpg",
+        "category": "DeepFashion2 Resized/resized/test",
+        "size": "25.26 KB",
+        "extension": ".jpg"
+      },
+      {
+        "name": "000004.jpg",
+        "path": "ai-system\\data\\raw\\DeepFashion2 Resized\\resized\\test\\000004.jpg",
+        "category": "DeepFashion2 Resized/resized/test",
+        "size": "24.43 KB",
+        "extension": ".jpg"
+      },
+      {
+        "name": "000005.jpg",
+        "path": "ai-system\\data\\raw\\DeepFashion2 Resized\\resized\\test\\000005.jpg",
+        "category": "DeepFashion2 Resized/resized/test",
+        "size": "26.67 KB",
+        "extension": ".jpg"
+      },
+      {
+        "name": "000006.jpg",
+        "path": "ai-system\\data\\raw\\DeepFashion2 Resized\\resized\\test\\000006.jpg",
+        "category": "DeepFashion2 Resized/resized/test",
+        "size": "23.92 KB",
+        "extension": ".jpg"
+      },
+      {
+        "name": "000007.jpg",
+        "path": "ai-system\\data\\raw\\DeepFashion2 Resized\\resized\\test\\000007.jpg",
+        "category": "DeepFashion2 Resized/resized/test",
+        "size": "30.74 KB",
+        "extension": ".jpg"
+      },
+      {
+        "name": "000008.jpg",
+        "path": "ai-system\\data\\raw\\DeepFashion2 Resized\\resized\\test\\000008.jpg",
+        "category": "DeepFashion2 Resized/resized/test",
+        "size": "26.84 KB",
+        "extension": ".jpg"
+      },
+      {
+        "name": "000009.jpg",
+        "path": "ai-system\\data\\raw\\DeepFashion2 Resized\\resized\\test\\000009.jpg",
+        "category": "DeepFashion2 Resized/resized/test",
+        "size": "36.16 KB",
+        "extension": ".jpg"
+      },
+      {
+        "name": "000010.jpg",
+        "path": "ai-system\\data\\raw\\DeepFashion2 Resized\\resized\\test\\000010.jpg",
+        "category": "DeepFashion2 Resized/resized/test",
+        "size": "23.21 KB",
+        "extension": ".jpg"
+      }
+    ],
+    "errors": []
+  },
+  "summary": {
+    "total_images": 286743,
+    "total_size_mb": 6940,
+    "categories_count": 3,
+    "file_types": [
+      ".jpg"
+    ],
+    "has_errors": false,
+    "ready_for_processing": true
+  }
+}

@@ -3,6 +3,9 @@ const router = express.Router();
 const Post = require("../models/Post");
 const User = require("../models/User");
 const Collection = require("../models/Collection");
+const LuxuryOutfit = require("../models/LuxuryOutfit");
+const outfitController = require("../controllers/outfitController");
+const genOutfitController = require("../controllers/genOutfitController");
 const multer = require("multer");
 const path = require("path");
 
@@ -334,5 +337,58 @@ router.get("/api/users/search", async (req, res) => {
         res.status(500).json({ error: "Server error" });
     }
 });
+// API: Get outfit suggestions based on preferences
+router.post('/api/outfit-suggestions', async (req, res) => {
+    try {
+        const { occasion, formality, limit = 12 } = req.body;
+        
+        const Outfit = require('../models/Outfit');
+        
+        // Build query based on preferences
+        const query = { processed: true };
+        if (occasion) query.occasions = occasion;
+        if (formality) query.formality = formality;
+        
+        // Get random outfits matching criteria
+        const outfits = await Outfit.aggregate([
+            { $match: query },
+            { $sample: { size: limit } },
+            { $project: { 
+                outfit_id: 1,
+                file_path: 1,
+                file_name: 1,
+                category: 1,
+                occasions: 1,
+                formality: 1,
+                primary_color: 1
+            }}
+        ]);
+        
+        res.json({ success: true, outfits });
+        
+    } catch (error) {
+        console.error('Outfit suggestion error:', error);
+        res.status(500).json({ success: false, error: error.message });
+    }
+});
 
+// Page: Outfit suggestions UI
+router.get('/outfit-suggestions', (req, res) => {
+    res.render('outfitSuggestions', { 
+        title: 'AI Outfit Suggestions',
+        user: req.user 
+    });
+});
+// ============================================================
+// AI Outfit Suggestion (CLIP + luxury_outfits)
+// ============================================================
+
+
+// Main page for the new feature (linked from navbar “Outfit Suggestion”)
+router.get("/outfit-suggestion", outfitController.getSuggestionPage);
+
+// API: text prompt + filters → semantic search on luxury_outfits
+router.post("/api/outfits/search", outfitController.searchOutfits);
+// TEMP: test Replicate API
+router.get("/api/outfits/generate-test", genOutfitController.testGenerate);
 module.exports = router;

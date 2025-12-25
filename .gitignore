@@ -1,39 +1,190 @@
 # ===============================
-# Node.js / Express project ignores
+# Node.js / Express project
 # ===============================
 
-# Node modules
+# Dependencies
 node_modules/
+package-lock.json
 
-# Environment variables
+# Environment variables & secrets
 .env
+.env.local
+.env.*.local
+.env.keys
 
+# ===============================
+# Python AI service
+# ===============================
+
+# Python virtual environment
+venv/
+env/
+ENV/
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Jupyter notebooks
+.ipynb_checkpoints/
+*.ipynb
+
+# Python cache
+pip-log.txt
+pip-delete-this-directory.txt
+
+# ===============================
 # Logs
+# ===============================
+
 *.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+logs/
 
-# System files (OS-specific)
-.DS_Store
-Thumbs.db
+# ===============================
+# User uploads & generated content
+# ===============================
 
-# Uploads (user-generated content)
+# User-uploaded files
 public/uploads/
 uploads/
-avatars/
-banners/
-videos/
+public/uploads/avatars/
+public/uploads/banners/
+public/uploads/videos/
 
-# Cache / temp files
+# ===============================
+# AI / ML datasets & models
+# ===============================
+
+# Large datasets (DeepFashion2, curated outfits, etc.)
+ai-system/data/raw/
+ai-system/data/processed/
+curated-outfits/1-downloaded/
+curated-outfits/3-processed/
+curated-outfits/raw/
+ai-system/data/dataset_analysis_report.json
+
+# Trained models & checkpoints
+ai-system/models/
+*.pth
+*.pt
+*.h5
+*.pkl
+*.ckpt
+*.safetensors
+
+# Hugging Face cache
+.cache/
+huggingface/
+
+# ===============================
+# Database & temporary files
+# ===============================
+
+# MongoDB dumps
+*.bson
+dump/
+mongo_dump/
+
+# SQLite (if used for any reason)
+*.sqlite
+*.sqlite3
+*.db
+
+# Temporary files
+*.tmp
+*.temp
 *.cache
-
-# IDE/editor settings
-.vscode/
-.idea/
 *.swp
 *.swo
+*~
 
-# Build output (if you add frontend build later, e.g., React)
+# ===============================
+# System files
+# ===============================
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+.directory
+
+# ===============================
+# IDE & Editor settings
+# ===============================
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# JetBrains (WebStorm, PyCharm, etc.)
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.swp
+*.swo
+*.swn
+
+# Emacs
+*~
+\#*\#
+.\#*
+
+# ===============================
+# Build output & distribution
+# ===============================
+
 dist/
 build/
+out/
+*.tgz
+
+# ===============================
+# Testing & coverage
+# ===============================
+
+coverage/
+.nyc_output/
+*.lcov
+
+# ===============================
+# Optional: Keep small sample data
+# ===============================
+
+# If you want to keep a few sample images for demo:
+# !curated-outfits/1-downloaded/sample-*.jpg
+
+# ===============================
+# Session & auth tokens
+# ===============================
+
+sessions/
+.session
+*.session
+
+# ===============================
+# Replicate / external API keys
+# (already covered by .env, but explicit)
+# ===============================
+
+replicate_token.txt
+api_keys.txt
+commands.txt

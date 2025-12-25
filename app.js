@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const session = require("express-session");
@@ -5,10 +6,9 @@ const MongoStore = require("connect-mongo");
 const path = require("path");
 const dotenv = require("dotenv");
 const passport = require("passport");
-const routes = require('./routes/routes');
+const routes = require("./routes/routes");
 const authRoutes = require("./routes/authRoutes");
 const User = require("./models/User");
-require("dotenv").config();
 require("./config/passport/google")(passport); // Google strategy config
 require("./config/passport/serialize")(passport);
 
@@ -70,6 +70,15 @@ app.use(async (req, res, next) => {
 
 // Static Files
 app.use(express.static(path.join(__dirname, "public")));
+app.use('/ai-system', express.static(path.join(__dirname, 'ai-system')));
+app.use(
+  "/curated-outfits",
+  express.static(path.join(__dirname, "curated-outfits"))
+);
+
+// REPLACE the old /dataset-images line with this:
+app.use('/ai-system/data/raw/DeepFashion2 Resized/resized',
+  express.static(path.join(__dirname, 'ai-system/data/raw/DeepFashion2 Resized/resized')));
 
 // EJS View Engine
 app.set("view engine", "ejs");
@@ -78,6 +87,11 @@ app.set("views", path.join(__dirname, "views"));
 // Routes
 app.use("/", routes);
 app.use("/", authRoutes);
+// DEBUG: log all requests that reach here
+app.use((req, res, next) => {
+  console.log("DEBUG request:", req.method, req.url);
+  next();
+});
 
 // 404 Fallback
 app.use((req, res) => {

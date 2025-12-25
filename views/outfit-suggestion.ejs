@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('partials/header') %>
+  <title><%= pageTitle %> | GlamMate</title>
+  <link rel="stylesheet" href="/css/outfit-suggestion.css">
+  <link rel="stylesheet" href="/css/navbar.css">
+</head>
+<body class="gm-body">
+  <%- include('partials/header') %>
+
+  <main class="gm-main gm-outfit-suggestion">
+    <section class="gm-hero">
+      <h1 class="gm-title">AI Outfit Suggestion</h1>
+      <p class="gm-subtitle">
+        Describe your dream look or pick quick filters to discover luxury outfits curated by GlamMate AI.
+      </p>
+    </section>
+
+    <section class="gm-toggle">
+      <button class="gm-toggle-btn gm-toggle-btn--active" id="mode-discover-btn">Discover Outfits</button>
+      <button class="gm-toggle-btn" id="mode-generate-btn">Generate Outfit (soon)</button>
+    </section>
+
+    <section class="gm-controls">
+      <div class="gm-prompt-box">
+        <label for="prompt-input">Tell GlamMate what you’re looking for</label>
+        <textarea id="prompt-input" rows="2" placeholder="e.g. brown oversized blazer with beige trousers for work"></textarea>
+      </div>
+
+      <div class="gm-filters">
+        <div class="gm-filter">
+          <label>Category</label>
+          <select id="filter-category">
+            <option value="">Any</option>
+            <% categories.forEach(function(c){ %>
+              <option value="<%= c %>"><%= c.charAt(0).toUpperCase() + c.slice(1) %></option>
+            <% }) %>
+          </select>
+        </div>
+
+        <div class="gm-filter">
+          <label>Occasion</label>
+          <select id="filter-occasion">
+            <option value="">Any</option>
+            <% occasions.forEach(function(o){ %>
+              <option value="<%= o %>"><%= o.charAt(0).toUpperCase() + o.slice(1) %></option>
+            <% }) %>
+          </select>
+        </div>
+
+        <div class="gm-filter">
+          <label>Style</label>
+          <select id="filter-style">
+            <option value="">Any</option>
+            <% styles.forEach(function(s){ %>
+              <option value="<%= s %>"><%= s.charAt(0).toUpperCase() + s.slice(1) %></option>
+            <% }) %>
+          </select>
+        </div>
+
+        <div class="gm-filter">
+          <label>Color</label>
+          <select id="filter-color">
+            <option value="">Any</option>
+            <% colors.forEach(function(c){ %>
+              <option value="<%= c %>"><%= c.charAt(0).toUpperCase() + c.slice(1) %></option>
+            <% }) %>
+          </select>
+        </div>
+
+        <button id="search-btn" class="gm-primary-btn">Find Outfits</button>
+      </div>
+    </section>
+
+    <section class="gm-results-section">
+      <h2 class="gm-results-title">Suggested Outfits</h2>
+      <div id="results-grid" class="gm-results-grid">
+        <!-- cards appended by JS -->
+      </div>
+      <div id="results-empty" class="gm-results-empty" style="display:none;">
+        Start by entering a prompt or choosing filters.
+      </div>
+      <div id="results-loading" class="gm-results-loading" style="display:none;">
+        Finding your perfect looks...
+      </div>
+    </section>
+  </main>
+
+  <script src="/js/outfit-suggestion.js"></script>
+</body>
+</html>
