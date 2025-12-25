@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/closet.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+</head>
+<body>
+    <%- include('partials/header', { user: user }) %>
+
+    <div class="closet-container">
+        <!-- Header -->
+        <header class="closet-header">
+            <h1>My Closet</h1>
+            <button class="btn-add" onclick="openAddModal()">
+                <span class="icon">+</span> Add Item
+            </button>
+        </header>
+
+        <!-- Filters Section -->
+        <section class="filters-section">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Search your closet..." />
+            </div>
+
+            <div class="filter-group">
+                <select id="categoryFilter" class="filter-select">
+                    <option value="all">All Categories</option>
+                    <option value="top">Tops</option>
+                    <option value="bottom">Bottoms</option>
+                    <option value="dress">Dresses</option>
+                    <option value="outerwear">Outerwear</option>
+                    <option value="shoes">Shoes</option>
+                    <option value="bag">Bags</option>
+                    <option value="accessory">Accessories</option>
+                    <option value="other">Other</option>
+                </select>
+
+                <select id="seasonFilter" class="filter-select">
+                    <option value="all">All Seasons</option>
+                    <option value="summer">Summer</option>
+                    <option value="winter">Winter</option>
+                    <option value="spring">Spring</option>
+                    <option value="fall">Fall</option>
+                    <option value="all-season">All Season</option>
+                </select>
+
+                <button class="btn-reset" onclick="resetFilters()">Reset Filters</button>
+            </div>
+        </section>
+
+        <!-- Items Grid -->
+        <section class="items-grid" id="itemsGrid">
+            <!-- Items load here via JavaScript -->
+            <div class="loading">Loading your closet...</div>
+        </section>
+
+        <!-- Empty State -->
+        <div class="empty-state" id="emptyState" style="display: none;">
+            <p>Your closet is empty</p>
+            <button onclick="openAddModal()">Add Your First Item</button>
+        </div>
+    </div>
+
+    <!-- Add Item Modal -->
+    <div id="addModal" class="modal">
+        <div class="modal-overlay" onclick="closeAddModal()"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add Item to Closet</h2>
+                <button class="modal-close" onclick="closeAddModal()">&times;</button>
+            </div>
+            <form id="addItemForm" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label>Image *</label>
+                    <input type="file" name="image" accept="image/*" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Item Name *</label>
+                    <input type="text" name="name" placeholder="e.g., Blue denim jacket" required maxlength="100">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Category *</label>
+                        <select name="category" required>
+                            <option value="">Select...</option>
+                            <option value="top">Top</option>
+                            <option value="bottom">Bottom</option>
+                            <option value="dress">Dress</option>
+                            <option value="outerwear">Outerwear</option>
+                            <option value="shoes">Shoes</option>
+                            <option value="bag">Bag</option>
+                            <option value="accessory">Accessory</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Season</label>
+                        <select name="season">
+                            <option value="all-season">All Season</option>
+                            <option value="summer">Summer</option>
+                            <option value="winter">Winter</option>
+                            <option value="spring">Spring</option>
+                            <option value="fall">Fall</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Colors (comma-separated)</label>
+                    <input type="text" name="colors" placeholder="e.g., blue, white, denim">
+                </div>
+
+                <div class="form-group">
+                    <label>Occasions (comma-separated)</label>
+                    <input type="text" name="occasion" placeholder="e.g., casual, work, party">
+                </div>
+
+                <div class="form-group">
+                    <label>Style Tags (comma-separated)</label>
+                    <input type="text" name="style" placeholder="e.g., minimal, elegant, streetwear">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Brand</label>
+                        <input type="text" name="brand" placeholder="e.g., Zara">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Price (₹)</label>
+                        <input type="number" name="price" placeholder="0" min="0">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Notes</label>
+                    <textarea name="notes" rows="3" placeholder="Any additional details..." maxlength="500"></textarea>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" onclick="closeAddModal()">Cancel</button>
+                    <button type="submit" class="btn-primary">Add to Closet</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Item Modal -->
+    <div id="editModal" class="modal">
+        <div class="modal-overlay" onclick="closeEditModal()"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Edit Item</h2>
+                <button class="modal-close" onclick="closeEditModal()">&times;</button>
+            </div>
+            <form id="editItemForm">
+                <!-- Similar structure to add form, populated dynamically -->
+            </form>
+        </div>
+    </div>
+
+    <script src="/js/closet.js"></script>
+</body>
+</html>

@@ -6,6 +6,8 @@ const Collection = require("../models/Collection");
 const LuxuryOutfit = require("../models/LuxuryOutfit");
 const outfitController = require("../controllers/outfitController");
 const genOutfitController = require("../controllers/genOutfitController");
+const closetController = require('../controllers/closetController');
+const ClosetItem = require('../models/ClosetItem');
 const multer = require("multer");
 const path = require("path");
 
@@ -391,4 +393,50 @@ router.get("/outfit-suggestion", outfitController.getSuggestionPage);
 router.post("/api/outfits/search", outfitController.searchOutfits);
 // TEMP: test Replicate API
 router.get("/api/outfits/generate-test", genOutfitController.testGenerate);
+
+// ============================================================
+// MY CLOSET FEATURE
+// ============================================================
+
+// Configure multer for closet item uploads
+const closetStorage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, "public/uploads/closet");
+    },
+    filename: function (req, file, cb) {
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+        cb(null, 'closet-' + uniqueSuffix + path.extname(file.originalname));
+    }
+});
+const closetUpload = multer({ 
+    storage: closetStorage,
+    limits: { fileSize: 5 * 1024 * 1024 }, // 5MB limit
+    fileFilter: (req, file, cb) => {
+        const allowedTypes = /jpeg|jpg|png|webp/;
+        const extname = allowedTypes.test(path.extname(file.originalname).toLowerCase());
+        const mimetype = allowedTypes.test(file.mimetype);
+        if (mimetype && extname) return cb(null, true);
+        cb(new Error('Only image files are allowed'));
+    }
+});
+
+// Closet page (main view)
+router.get('/closet', ensureLoggedIn, closetController.getCloset);
+
+// API: Create new closet item
+router.post('/api/closet/items', ensureLoggedIn, closetUpload.single('image'), closetController.createItem);
+
+// API: Get all items with filters
+router.get('/api/closet/items', ensureLoggedIn, closetController.getItems);
+
+// API: Update item metadata
+router.put('/api/closet/items/:id', ensureLoggedIn, closetController.updateItem);
+
+// API: Delete item
+router.delete('/api/closet/items/:id', ensureLoggedIn, closetController.deleteItem);
+
+// API: Get single item details
+router.get('/api/closet/items/:id', ensureLoggedIn, closetController.getItemById);
+
+
 module.exports = router;
