@@ -15,7 +15,23 @@
       <li><a href="/">Home</a></li>
       <li><a href="/explore">Explore</a></li>
       <li><a href="/outfit-suggestion">Outfit Suggestion</a></li>
-      <li><a href="/closet" class="nav-link">My Closet</a></li>
+      
+      <!-- MY CLOSET DROPDOWN (NEW) -->
+      <% if (user) { %>
+        <li class="nav-closet">
+          <div class="closet-dropdown">
+            <span>My Closet</span>
+            <div class="dropdown-menu">
+              <a href="/closet">Add Clothes</a>
+              <a href="/style-me">Style Me</a>
+            </div>
+          </div>
+        </li>
+      <% } else { %>
+        <li><a href="/closet">My Closet</a></li>
+      <% } %>
+      
+      <!-- POST LOOK DROPDOWN -->
       <% if (user) { %>
         <li class="nav-posts">
           <div class="posts-dropdown">
@@ -27,8 +43,11 @@
           </div>
         </li>
       <% } %>
+      
       <li><a href="/chat">Style Chat</a></li>
       <li><a href="/contact">Contact</a></li>
+      
+      <!-- PROFILE DROPDOWN -->
       <% if (user) { %>
         <li class="nav-profile">
           <div class="profile-dropdown">
@@ -48,6 +67,7 @@
     </ul>
   </div>
 </nav>
+
 <% if (message) { %>
   <div id="messageModal" class="message-modal <%= message.type %>">
     <div class="modal-content">
@@ -65,6 +85,7 @@
     </div>
   </div>
 <% } %>
+
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     const modal = document.getElementById('messageModal');

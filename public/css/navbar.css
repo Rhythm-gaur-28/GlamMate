@@ -187,6 +187,92 @@
 .posts-dropdown:hover > span {
   color: #b8860b;
 }
+/* ============================================
+   MY CLOSET DROPDOWN (Same style as Posts)
+   ============================================ */
+
+.nav-closet {
+  position: relative;
+}
+
+.closet-dropdown {
+  position: relative;
+  cursor: pointer;
+}
+
+.closet-dropdown > span {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #000;
+  transition: color 0.3s ease;
+  position: relative;
+  display: inline-block;
+  padding: 5px 0;
+}
+
+/* Golden underline for closet dropdown */
+.closet-dropdown > span::after {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  background: #b8860b;
+  bottom: -5px;
+  left: 0;
+  transition: width 0.3s ease;
+}
+
+.closet-dropdown:hover > span::after {
+  width: 100%;
+}
+
+.closet-dropdown:hover > span {
+  color: #b8860b;
+}
+
+/* Dropdown menu for closet (reuses existing .dropdown-menu) */
+.closet-dropdown .dropdown-menu {
+  left: 0; /* Align left like posts dropdown */
+}
+
+/* Hover zone for dropdown persistence */
+.nav-closet::before {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 15px; /* Bridge gap */
+  background: transparent;
+  z-index: 998;
+}
+
+/* Show dropdown with extended hover area */
+.closet-dropdown:hover .dropdown-menu,
+.nav-closet:hover .dropdown-menu {
+  display: flex;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Persistent hover state for parent element */
+.nav-closet:hover .closet-dropdown > span {
+  color: #b8860b;
+}
+
+.nav-closet:hover .closet-dropdown > span::after {
+  width: 100%;
+}
+
+/* Focus state for accessibility */
+.closet-dropdown:focus-within .dropdown-menu {
+  display: flex;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
 
 /* Dropdown menu styling */
 .dropdown-menu {
