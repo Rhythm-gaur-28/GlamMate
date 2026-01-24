@@ -438,5 +438,19 @@ router.delete('/api/closet/items/:id', ensureLoggedIn, closetController.deleteIt
 // API: Get single item details
 router.get('/api/closet/items/:id', ensureLoggedIn, closetController.getItemById);
 
+// API: Generate AI outfit suggestions from closet
+router.post('/api/closet/generate-outfits', ensureLoggedIn, closetController.generateOutfitSuggestions);
 
+// Page: Style Me (outfit generator UI)
+router.get('/style-me', ensureLoggedIn, async (req, res) => {
+    const user = await getCurrentUser(req);
+    if (!user) {
+        req.session.message = { type: 'error', text: 'Login required' };
+        return res.redirect('/auth');
+    }
+    res.render('style-me', {
+        title: 'Style Me - GlamMate',
+        user: user
+    });
+});
 module.exports = router;
