@@ -27,11 +27,13 @@ const ClosetItemSchema = new mongoose.Schema({
     type: String,
     lowercase: true,
     trim: true
+    // REMOVED: enum restriction - allow any color
   }],
   occasion: [{
     type: String,
-    enum: ['casual', 'work', 'party', 'wedding', 'vacation', 'gym', 'formal', 'date'],
-    lowercase: true
+    lowercase: true,
+    trim: true
+    // REMOVED: enum restriction - allow any occasion (indian wedding, brunch, etc.)
   }],
   season: {
     type: String,
@@ -42,6 +44,7 @@ const ClosetItemSchema = new mongoose.Schema({
     type: String,
     lowercase: true,
     trim: true
+    // No enum - already flexible
   }],
   brand: {
     type: String,
@@ -53,7 +56,7 @@ const ClosetItemSchema = new mongoose.Schema({
     maxlength: 500
   },
   
-  // Future AI integration fields
+  // AI fields
   aiTags: {
     type: [String],
     default: []
