@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style-me.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+</head>
+<body>
+    <%- include('partials/header', { user: user }) %>
+
+    <div class="style-me-container">
+        <!-- Hero Section -->
+        <header class="hero-section">
+            <h1>Style Me from My Closet</h1>
+            <p class="subtitle">Tell me where you're going, and I'll create the perfect outfit from your wardrobe</p>
+        </header>
+
+        <!-- Prompt Input Section -->
+        <section class="prompt-section">
+            <div class="prompt-card">
+                <label for="promptInput">Where are you going?</label>
+                <textarea 
+                    id="promptInput" 
+                    placeholder="E.g., casual brunch with friends, formal wedding, coffee date, gym workout..."
+                    rows="3"
+                    maxlength="200"
+                ></textarea>
+                <div class="prompt-actions">
+                    <button class="btn-generate" onclick="generateOutfits()">
+                        <span class="icon">✨</span>
+                        <span class="text">Generate Outfits</span>
+                    </button>
+                    <button class="btn-clear" onclick="clearPrompt()">Clear</button>
+                </div>
+                <div class="quick-prompts">
+                    <span class="label">Quick ideas:</span>
+                    <button class="quick-btn" onclick="setPrompt('casual coffee date')">Coffee Date ☕</button>
+                    <button class="quick-btn" onclick="setPrompt('formal office meeting')">Office Meeting 💼</button>
+                    <button class="quick-btn" onclick="setPrompt('party with friends')">Party 🎉</button>
+                    <button class="quick-btn" onclick="setPrompt('romantic dinner')">Dinner Date 🍽️</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Loading State -->
+        <div id="loadingState" class="loading-state" style="display: none;">
+            <div class="spinner"></div>
+            <p>Creating your perfect outfits...</p>
+        </div>
+
+        <!-- Empty State -->
+        <div id="emptyState" class="empty-state">
+            <div class="empty-icon">👗</div>
+            <h3>Ready to Style You!</h3>
+            <p>Enter where you're going above, and I'll suggest complete outfits from your closet</p>
+        </div>
+
+        <!-- Outfits Grid -->
+        <section id="outfitsSection" class="outfits-section" style="display: none;">
+            <div class="section-header">
+                <h2>Your Perfect Outfits</h2>
+                <p id="outfitCount"></p>
+            </div>
+            <div id="outfitsGrid" class="outfits-grid">
+                <!-- Outfit cards will be inserted here -->
+            </div>
+        </section>
+
+        <!-- Error State -->
+        <div id="errorState" class="error-state" style="display: none;">
+            <div class="error-icon">😕</div>
+            <h3 id="errorMessage">Something went wrong</h3>
+            <p id="errorDetails"></p>
+            <button class="btn-retry" onclick="location.reload()">Try Again</button>
+        </div>
+    </div>
+
+    <script src="/js/style-me.js"></script>
+</body>
+</html>
